@@ -10,7 +10,6 @@ public class HelloController {
 
     @GetMapping("hello")
     public String Hello(Model model) {
-
         return "hello";
     }
 
