@@ -10,7 +10,8 @@ public class HelloController {
 
     @GetMapping("hello")
     public String Hello(Model model) {
-        return "hello";
+        model.addAttribute("data", "hello!"); // attributeName은 해당 파일에 있는 변수이름
+        return "hello"; // 화면 이름 hello.html과 매핑
     }
 
 }
