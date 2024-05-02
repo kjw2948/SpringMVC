@@ -3,17 +3,22 @@ package jpabook.jpashop.repository;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.EntityManager;
 import jpabook.jpashop.domain.Member;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 
 @Repository // 컴포넌트 대상이 되는 어노테이션 중 하나
+@RequiredArgsConstructor
 public class MemberRepository {
+
+    private final EntityManager em;
     // 엔티티 매니저가 필요함
+    /*
     @PersistenceContext
     private EntityManager em;
-
+     */
     public Long save(Member member) {
         em.persist(member);
         return member.getId();
