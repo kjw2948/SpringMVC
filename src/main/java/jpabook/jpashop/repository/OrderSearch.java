@@ -17,7 +17,10 @@ public class OrderSearch {
     public void save(Order order) {
 
     }
+    /*
     public Order findOne(Long id) {
 
     }
+
+     */
 }
