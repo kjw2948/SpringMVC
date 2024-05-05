@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @RequiredArgsConstructor
-@Getter
 public class MemberController {
 
     private final MemberService memberService;
