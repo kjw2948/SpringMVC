@@ -1,11 +1,13 @@
 package jpabook.jpashop.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.Embeddable;
+import lombok.Getter;
 
-@Entity
+@Embeddable
+@Getter
 public class Address {
-    @Id
     private String zipcode;
+    private String city;
+    private String street;
 
 }

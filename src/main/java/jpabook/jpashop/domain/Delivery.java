@@ -1,8 +1,10 @@
 package jpabook.jpashop.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 @Entity
+@Getter
 public class Delivery {
     @Id @GeneratedValue
     @Column(name = "DELIVERY_ID")

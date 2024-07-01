@@ -1,8 +1,10 @@
 package jpabook.jpashop.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 @Entity
+@Getter
 public class OrderItem {
     @Id @GeneratedValue
     @Column(name = "ORDERITEM_ID")
@@ -18,4 +20,9 @@ public class OrderItem {
 
     private int orderPrice;
     private int count;
+
+    public void setOrder(Order order) {
+        this.order = order;
+
+    }
 }
