@@ -9,40 +9,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "ORDERS")
+@Table(name = "orders")
 @Getter @Setter
 public class Order {
     @Id @GeneratedValue
-    @Column(name = "ORDER_ID")
+    @Column(name = "order_id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MEMBER_ID")
+    @ManyToOne
+    @JoinColumn(name = "orders")
     private Member member;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "DELEVERY_ID")
+    @OneToOne
+    @JoinColumn(name = "delivery_id") // access가 많은 곳에 fk를 두자!
     private Delivery delivery;
 
-    private LocalDateTime orderDate;
-    private OrderStatus status;
+    private LocalDateTime orderDate; // 주문시간
+
+
+    private OrderStatus status; // 주문상태 [ORDER, CANCEL]
 
     //연관관계 메서드 --> 연관관계 주인이면 set, 아니면 add
-    public void setMember(Member member) {
-        this.member = member;
-        member.getOrders().add(this);
-    }
-    public void addOrderItems(OrderItem orderItem) {
-        orderItems.add(orderItem);
-        orderItem.setOrder(this);
-    }
 
-    public void setDelivery(Delivery delivery) {
-        this.delivery = delivery;
-        delivery.setOrder(this);
-    }
 
 }

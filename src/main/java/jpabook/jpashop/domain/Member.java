@@ -11,15 +11,17 @@ import java.util.List;
 @Getter @Setter
 public class Member {
     @Id @GeneratedValue //자동 생성
-    @Column(name = "MEMBER_ID")
+    @Column(name = "member_id")
     private Long id;
 
     private String name;
 
     @Embedded
-    private Address address;
+    private Address adress;
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "order_id")
     private List<Order> orders = new ArrayList<>();
+
+
 
 }
