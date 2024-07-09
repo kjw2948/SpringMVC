@@ -20,8 +20,16 @@ public class Category {
     private int stockQuantity;
 
     @ManyToMany
-    @JoinTable(name = "category_item")
+    @JoinTable(name = "category_item",
+            joinColumns = @JoinColumn(name = "category_id"),
+            inverseJoinColumns = @JoinColumn(name = "item_id"))
     private List<Category> items = new ArrayList<>();
 
+    @ManyToOne
+    @JoinTable(name = "parent_id")
+    private Category parent;
+
+    @OneToMany(mappedBy = "parent")
+    private List<Category> childe = new ArrayList<>();
 
 }
