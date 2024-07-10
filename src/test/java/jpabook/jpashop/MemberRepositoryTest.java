@@ -25,17 +25,17 @@ public class MemberRepositoryTest {
     public void testMember() throws Exception{
         //given
         Member member = new Member();
-        member.setUsername("memberA");
+        member.setName("memberA");
 
 
         //when
         Long savedId = memberRepository.save(member);
-        Member findMember = memberRepository.find(savedId);
+        Member findMember = memberRepository.findOne(savedId);
 
 
         //then
         Assertions.assertThat(findMember.getId()).isEqualTo(member.getId());
-        Assertions.assertThat(findMember.getUsername()).isEqualTo(member.getUsername());
+        Assertions.assertThat(findMember.getName()).isEqualTo(member.getName());
         Assertions.assertThat(findMember).isEqualTo(member);
         //영속성 컨텍스트 안에선 식별자가 동일하면 같은 엔티티로 취급함 ,
     }

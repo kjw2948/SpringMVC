@@ -10,12 +10,13 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
+@Transactional(readOnly = true) // 데이터 변경x --> 클래스에 있는 메서드가 기본적으로 readOnly 상태 --> 데이터 변경이 필요한 경우 join처럼 따로 설정해주면 됨
 public class MemberService {
 
     private final MemberRepository memberRepository;
 
     //회원 가입
+    @Transactional
     public Long join(Member member){
         //중복 회원 체크
        validateDuplicateMember(member);

@@ -1,6 +1,7 @@
 package jpabook.jpashop.domain;
 
 import jakarta.persistence.*;
+import jpabook.jpashop.item.Item;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,10 +24,10 @@ public class Category {
     @JoinTable(name = "category_item",
             joinColumns = @JoinColumn(name = "category_id"),
             inverseJoinColumns = @JoinColumn(name = "item_id"))
-    private List<Category> items = new ArrayList<>();
+    private List<Item> items = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinTable(name = "parent_id")
+    @JoinColumn(name = "parent_id")
     private Category parent;
 
     @OneToMany(mappedBy = "parent")
