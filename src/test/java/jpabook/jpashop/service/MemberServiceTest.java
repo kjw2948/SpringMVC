@@ -1,10 +1,12 @@
 package jpabook.jpashop.service;
 
+import jakarta.persistence.EntityManager;
 import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.repository.MemberRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 
@@ -16,27 +18,34 @@ class MemberServiceTest {
 
     @Autowired private MemberRepository memberRepository;
     @Autowired private MemberService memberService;
+    @Autowired private EntityManager em;
     @Test
     void 회원가입() throws Exception{
+        //given
         Member member = new Member();
         member.setName("김정원");
-        memberService.join(member);
-        memberRepository.findByName(member.getName());
+
+        //when
+        Long saveId = memberService.join(member);
+
+        //then
+        assertEquals(member, memberRepository.findOne(saveId));
     }
 
     @Test
-    void 중복_회원_예외() {
+    void 중복_회원_예외() throws Exception{
         Member member1 = new Member();
         Member member2 = new Member();
         member1.setName("중복");
         member2.setName("중복");
 
-        System.out.println("member1 저장 시작");
         memberService.join(member1);
-        System.out.println("member1 저장 완료");
+        try {
+            memberService.join(member2);
+        }catch (IllegalStateException e){
+            return;
+        }
 
-        System.out.println("member2 저장 시작");
-        memberService.join(member2);
-        System.out.println("member2 저장 완료");
+        fail("예외가 발생한다");
     }
 }
