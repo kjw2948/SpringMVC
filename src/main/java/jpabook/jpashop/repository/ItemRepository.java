@@ -11,7 +11,6 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-@Transactional
 public class ItemRepository {
 
     private final EntityManager em;
