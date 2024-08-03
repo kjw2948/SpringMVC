@@ -17,7 +17,6 @@ public class OrderService {
      * 주문
      */
     public Order order() {
-        Order order = new Order();
-
+        return new Order();
     }
 }
