@@ -13,10 +13,4 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
 
-    /**
-     * 주문
-     */
-    public Order order() {
-        return new Order();
-    }
 }
