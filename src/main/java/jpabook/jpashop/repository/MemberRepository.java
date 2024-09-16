@@ -39,4 +39,11 @@ public class MemberRepository {
                 .setParameter("name", name) // Query에서 말하는 name이 어떤 name인지 setting 해주는 것
                 .getResultList();
     }
+
+    //
+    public void evaluate(int star) {
+        em.createQuery("update m from Member m where m.star = star", Member.class)
+                .setParameter("star", star)
+                .getResultList();
+    }
 }
