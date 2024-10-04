@@ -41,9 +41,5 @@ public class MemberRepository {
     }
 
     //
-    public void evaluate(int star) {
-        em.createQuery("update m from Member m where m.star = star", Member.class)
-                .setParameter("star", star)
-                .getResultList();
-    }
+
 }
